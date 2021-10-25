@@ -11,6 +11,14 @@ local request = request or http_request or syn.request or fluxus.request
 
 local BukiFuncs = {}
 
+function BukiFuncs:SendRequest(Url, Method) 
+    local Response = request({
+        Url = Url;
+        Method = Method;
+    })
+    return Response
+end
+
 function BukiFuncs:sendWebhook(Context, URL)
     local Information = {["content"] = Context}
     local HeadersWebhook = {["content-type"] =  "application/json"}
@@ -269,15 +277,6 @@ function BukiFuncs:GetHashedHWID()
 -- add later
 end
 --]]
-
-
-function BukiFuncs:SendRequest(Url, Method) 
-    local Response = request({
-        Url = Url;
-        Method = Method;
-    })
-    return Response
-end
 
 function BukiFuncs:ASCII(string, font)
     local s = string:gsub(" ", "+")
