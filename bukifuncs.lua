@@ -272,7 +272,7 @@ end
 
 
 function BukiFuncs:SendRequest(Url, Method) 
-    local Response = syn.request({
+    local Response = request({
         Url = Url;
         Method = Method;
     })
@@ -281,7 +281,7 @@ end
 
 function BukiFuncs:ASCII(string, font)
     local s = string:gsub(" ", "+")
-    local Response = syn.request({
+    local Response = request({
         Url = "https://artii.herokuapp.com/make?text=" .. s .. "&font=" .. font,
         Method = "Get",
     })
