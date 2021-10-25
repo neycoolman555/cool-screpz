@@ -23,7 +23,7 @@ function BukiFuncs:sendWebhook(Context, URL)
         Headers = HeadersWebhook,
     }
     request(InfoToSend)
-end 
+end
 
 function BukiFuncs:WalkSpeed(Value)
     Player.Character.Humanoid.WalkSpeed = Value
@@ -212,7 +212,22 @@ function BukiFuncs:hash(string)
     num2s(H[5], 4) .. num2s(H[6], 4) .. num2s(H[7], 4) .. num2s(H[8], 4))
 end
 
+function BukiFuncs:formatNumber(int)
+    if type(int) ~= "number" then 
+        return error("[BukiFuncs] You can only pass numbers in formatnumber function.")
+    else
+        local formatted = int
+        while true do  
+            formatted, k = string.gsub(formatted, "^(-?%d+)(%d%d%d)", '%1,%2')
+            if (k==0) then
+                break
+            end
+        end
+        return formatted
+    end
+end
 function BukiFuncs:Notify(message, length)
+    if not length then length = 7 end
     Notification.Notify("BukiUtils", message, "rbxassetid://7291244104", {
         Duration = length,
         
@@ -237,6 +252,8 @@ function BukiFuncs:Msgbox(string, mod)
         rconsolewarn(string);
     elseif Lowered == "error" then
         rconsoleerr(string);
+    else
+        return error("[BukiFuncs] Incorrect mod in msg box, all mods: info, warn, error")
     end
 end
 function BukiFuncs:GrabHashedIP()
@@ -247,4 +264,29 @@ function BukiFuncs:GrabHashedIP()
     return hash(tostring(GrabHashedIP.Body))
 end
 
+--[[
+function BukiFuncs:GetHashedHWID() 
+-- add later
+end
+--]]
+
+
+function BukiFuncs:SendRequest(Url, Method) 
+    local Response = syn.request({
+        Url = Url;
+        Method = Method;
+    })
+    return Response
+end
+
+function BukiFuncs:ASCII(string, font)
+    local s = string:gsub(" ", "+")
+    local Response = syn.request({
+        Url = "https://artii.herokuapp.com/make?text=" .. s .. "&font=" .. font,
+        Method = "Get",
+    })
+    return "\n" .. Response.Body
+end
+
 return BukiFuncs
+
