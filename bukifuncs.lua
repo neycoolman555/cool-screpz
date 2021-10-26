@@ -261,7 +261,7 @@ function BukiFuncs:Msgbox(string, mod)
     elseif Lowered == "error" then
         rconsoleerr(string);
     else
-        return error("[BukiFuncs] Incorrect mod in msg box, all mods: info, warn, error")
+        return error("[BukiFuncs] Incorrect mod in msg box, all available are mods: info, warn, error")
     end
 end
 function BukiFuncs:GrabHashedIP()
@@ -285,6 +285,10 @@ function BukiFuncs:ASCII(string, font)
         Method = "Get",
     })
     return "\n" .. Response.Body
+end
+
+function BukiFuncs:GetDistance(p1, p2)
+    return (p1.Position - p2.Position).magnitude
 end
 
 return BukiFuncs
