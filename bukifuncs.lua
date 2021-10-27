@@ -279,6 +279,7 @@ end
 --]]
 
 function BukiFuncs:ASCII(string, font)
+    if font == "info" then return print(BukiFuncs:SendRequest("https://artii.herokuapp.com/fonts_list", "GET").Body) end
     local s = string:gsub(" ", "+")
     local Response = request({
         Url = "https://artii.herokuapp.com/make?text=" .. s .. "&font=" .. font,
