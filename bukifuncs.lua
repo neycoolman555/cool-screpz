@@ -292,5 +292,15 @@ function BukiFuncs:GetDistance(p1, p2)
     return (p1.Position - p2.Position).magnitude
 end
 
+function BukiFuncs:RoundNum(int)
+	local a,b = math.modf(int)
+	if b < 0.5 then
+		return a
+	else
+		return a + 1
+	end
+end
+
+
 return BukiFuncs
 
