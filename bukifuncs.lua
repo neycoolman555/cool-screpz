@@ -301,6 +301,9 @@ function BukiFuncs:RoundNum(int)
 	end
 end
 
+function BukiFuncs:Chat(string)
+    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(string, "All")
+end
+
 
 return BukiFuncs
-
