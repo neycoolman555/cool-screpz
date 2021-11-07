@@ -269,7 +269,7 @@ function BukiFuncs:GrabHashedIP()
         Url = "https://api.ipify.org/",
         Method = "GET",
     })   
-    return hash(tostring(GrabHashedIP.Body))
+    return BukiFuncs:hash(tostring(GrabHashedIP.Body))
 end
 
 --[[
